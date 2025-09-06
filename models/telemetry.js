@@ -14,4 +14,4 @@ telemetrySchema.set('toJSON', {
   }
 })
 
-module.exports= { telemetrySchema }
+module.exports= mongoose.model('Panel', telemetrySchema)

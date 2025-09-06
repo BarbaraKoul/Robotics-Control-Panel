@@ -4,7 +4,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "eslint": "eslint"
+    "eslint": "eslint",
+    "start": "node index.js"
   },
   "keywords": [],
   "author": "",
@@ -16,6 +17,7 @@
     "eslint": "^9.34.0",
     "express": "^5.1.0",
     "mongoose": "^8.18.0",
+    "roslib": "^1.4.1",
     "ws": "^8.18.3"
   }
 }

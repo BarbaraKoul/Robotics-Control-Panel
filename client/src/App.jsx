@@ -1,4 +1,4 @@
-import PosePanel from "../components/posePanel"
+import PosePanel from "./components/posePanel"
 const App = () => {
   return(
     <>

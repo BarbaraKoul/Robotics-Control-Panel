@@ -1,41 +1,34 @@
 const express = require('express')
 const mongoose = require('mongoose')
 const cors = require('cors')
-const ROSLIB = require('roslib')
+const panelRouter = require('./controllers/panel')
+const mongoUrl = require('./utils/config')
+const http = require("http")
+const { Server } = require("socket.io")
 
 const app=express()
 
-app.use(cors())
-app.use(express.json())
+mongoose.connect(config.mongoUrl)
 
-const ros = new ROSLIB.Ros({
-  url: "ws://localhost:9090"
-})
-
-const poseListener = new ROSLIB.Topic({
-  ros: ros,
-  name: "/turtle1/pose",
-  messageType: "turtlesim/Pose"
-})
-
-poseListener.subscribe((message) => {
-  latestPose = {
-    x: message.x,
-    y: message.y,
-    theta: message.theta,
-    linear_velocity: message.linear_velocity,
-    angular_velocity: message.angular_velocity,
-    timestamp: Date.now()
+const server = http.createServer(app);
+const io = new Server(server, {
+  cors: {
+    origin: "http://localhost:3000",
+    methods: ["GET", "POST"]
   }
 })
 
-app.get("/api/pose", (req, res) => {
-  res.json(latestPose)
+io.on("connection", (socket) => {
+  console.log("New WebSocket connection:", socket.id)
 })
+
+app.use(cors())
+app.use(express.json())
+app.use("/api/pose", panelRouter)
 
 
 app.get('/api/test', (req, res) => {
     res.json({message: 'Server ok'})
 })
 
-module.exports=app
+module.exports = { app, server, io }

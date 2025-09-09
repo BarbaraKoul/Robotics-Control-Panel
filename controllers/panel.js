@@ -1,24 +1,36 @@
 const express = require("express")
 const ROSLIB = require("roslib")
 const Panel = require("../models/telemetry")
-const { io } = require("../app")
 
 const panelRouter = express.Router()
 
-const ros = new ROSLIB.Ros({
-  url: "ws://localhost:9090",
-})
+const ros = new ROSLIB.Ros()
+
+function connectToROS() {
+  try {
+    ros.connect("ws://localhost:9090")
+  } catch (error) {
+    console.log("Retrying ROS connection in 3 seconds...")
+    setTimeout(connectToROS, 3000)
+  }
+}
+
+connectToROS()
 
 ros.on("connection", () => {
-  console.log("Connected to rosbridge")
+  console.log("Connected to rosbridge successfully")
 })
 
 ros.on("error", (error) => {
-  console.error("Error connecting to rosbridge:", error)
+  console.error("ROS connection error:", error)
+  console.log("Retrying in 5 seconds...")
+  setTimeout(connectToROS, 5000)
 })
 
 ros.on("close", () => {
-  console.log("Connection to rosbridge closed")
+  console.log("🔌 Connection to rosbridge closed")
+  console.log("Reconnecting in 3 seconds...")
+  setTimeout(connectToROS, 3000)
 })
 
 const poseListener = new ROSLIB.Topic({
@@ -27,7 +39,7 @@ const poseListener = new ROSLIB.Topic({
   messageType: "turtlesim/Pose",
 })
 
-let latestPose = null;
+let latestPose = null
 
 poseListener.subscribe(async (message) => {
   latestPose = {
@@ -42,17 +54,22 @@ poseListener.subscribe(async (message) => {
   try {
     const poseDoc = new Panel(latestPose)
     await poseDoc.save()
-    console.log("Pose saved:", latestPose)
+    console.log("Pose saved to MongoDB")
+    
+    if (global.io) {
+      global.io.emit("pose_update", latestPose)
+    }
   } catch (err) {
-    console.error("Error saving pose:", err)
+    console.error("Error saving pose to MongoDB:", err.message)
   }
 })
 
 panelRouter.get("/", (req, res) => {
   if (!latestPose) {
-    return res
-      .status(503)
-      .json({ error: "Pose data not yet available from ROS" })
+    return res.status(503).json({ 
+      error: "Pose data not yet available from ROS",
+      status: "Waiting for turtle data..."
+    })
   }
   res.json(latestPose)
 })
@@ -63,9 +80,11 @@ panelRouter.get("/history", async (req, res) => {
     res.json(history)
   } catch (err) {
     console.error("Error fetching history:", err)
-    res.status(500).json({ error: "Failed to fetch history" })
+    res.status(500).json({ 
+      error: "Failed to fetch history",
+      details: err.message 
+    })
   }
-  io.emit("pose_update", latestPose)
 })
 
 module.exports = panelRouter

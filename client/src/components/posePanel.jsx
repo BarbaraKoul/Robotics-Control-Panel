@@ -23,7 +23,7 @@ const PosePanel = () => {
         <p>Waiting for ROS data...</p>
       )}
 
-      <h2 className="text-xl font-bold mt-4 mb-2">History (last 50)</h2>
+      <h2 className="text-xl font-bold mt-4 mb-2">History (last 30)</h2>
       <ul className="max-h-60 overflow-y-auto text-sm">
         {history.map((pose, i) => (
           <li key={i}>

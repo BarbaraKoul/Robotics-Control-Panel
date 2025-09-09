@@ -2,13 +2,13 @@ const express = require('express')
 const mongoose = require('mongoose')
 const cors = require('cors')
 const panelRouter = require('./controllers/panel')
-const mongoUrl = require('./utils/config')
+const { mongoUrl } = require('./utils/config')
 const http = require("http")
 const { Server } = require("socket.io")
 
 const app=express()
 
-mongoose.connect(config.mongoUrl)
+mongoose.connect(mongoUrl)
 
 const server = http.createServer(app);
 const io = new Server(server, {

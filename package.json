@@ -16,6 +16,7 @@
     "dotenv": "^17.2.2",
     "eslint": "^9.34.0",
     "express": "^5.1.0",
+    "mongodb": "^6.19.0",
     "mongoose": "^8.18.0",
     "roslib": "^1.4.1",
     "socket.io": "^4.8.1",

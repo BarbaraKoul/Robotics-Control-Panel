@@ -1,5 +1,6 @@
 import React, { useEffect } from "react"
 import { usePoseStore } from "../store/usePoseStore"
+import "./panel.css"
 
 const PosePanel = () => {
   const { latestPose, history, connect } = usePoseStore()
@@ -9,10 +10,10 @@ const PosePanel = () => {
   }, [connect])
 
   return (
-    <div className="p-4">
-      <h2 className="text-xl font-bold mb-2">Latest Pose</h2>
+    <div>
+      <h2 className="latestTitle">Data</h2>
       {latestPose ? (
-        <div className="bg-gray-100 p-3 rounded-md">
+        <div className="data">
           <p>X: {latestPose.x.toFixed(2)}</p>
           <p>Y: {latestPose.y.toFixed(2)}</p>
           <p>Θ: {latestPose.theta.toFixed(2)}</p>
@@ -20,11 +21,11 @@ const PosePanel = () => {
           <p>Angular vel: {latestPose.angular_velocity.toFixed(2)}</p>
         </div>
       ) : (
-        <p>Waiting for ROS data...</p>
+        <p className="waiting">Waiting for ROS data...</p>
       )}
 
-      <h2 className="text-xl font-bold mt-4 mb-2">History (last 30)</h2>
-      <ul className="max-h-60 overflow-y-auto text-sm">
+      <h2>History (last 30)</h2>
+      <ul>
         {history.map((pose, i) => (
           <li key={i}>
             [{new Date(pose.timestamp).toLocaleTimeString()}] X:{pose.x.toFixed(2)} Y:{pose.y.toFixed(2)}

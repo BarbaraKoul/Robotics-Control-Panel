@@ -1,0 +1,19 @@
+.latestTitle{
+    background-color: rgb(175,228,227);
+    position: fixed;
+    right:13px;
+    height:50x;
+    width:150px;
+    padding:13px;
+    text-align:center;
+    font-family: Roboto;
+    border-radius: 10px 10px 0px 0px;
+}
+
+.waiting{
+    position: fixed;
+    right:24px;
+    top:100px;
+    font-family: Roboto;
+    font-size: 15px;
+}

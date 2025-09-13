@@ -1,5 +1,6 @@
 import { Line } from "react-chartjs-2"
 import { usePoseStore } from "../store/usePoseStore"
+import "./diagrams.css"
 
 import {
   Chart as ChartJS,
@@ -53,7 +54,7 @@ const VelocityChart = () =>{
   }
 
     return(
-        <div>
+        <div className="chart">
             <Line options={lineChartOptions} data={lineChartData}/>
         </div>
     )

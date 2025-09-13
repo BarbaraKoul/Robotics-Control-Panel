@@ -24,7 +24,7 @@ const PosePanel = () => {
         <p className="waiting">Waiting for ROS data...</p>
       )}
 
-      <h2>History (last 30)</h2>
+      <h2 className="titleHistory">History (last 30)</h2>
       <ul>
         {history.map((pose, i) => (
           <li key={i}>

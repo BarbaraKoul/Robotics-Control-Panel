@@ -4,4 +4,9 @@
     box-shadow: 0 4px 10px rgba(0,0,0,0.1);
     padding: 10px;
     justify-content: center;
+    transition: scale 0.3s;
+}
+
+.chart:hover{
+    scale:1.2;
 }

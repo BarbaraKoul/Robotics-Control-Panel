@@ -25,13 +25,18 @@ const PosePanel = () => {
       )}
 
       <h2 className="titleHistory">History (last 30)</h2>
+      <div>
+        {latestPose ?(
       <ul>
         {history.map((pose, i) => (
           <li key={i}>
             [{new Date(pose.timestamp).toLocaleTimeString()}] X:{pose.x.toFixed(2)} Y:{pose.y.toFixed(2)}
           </li>
         ))}
-      </ul>
+      </ul>) : (
+        <div></div>
+      )}
+      </div>
     </div>
   )
 }

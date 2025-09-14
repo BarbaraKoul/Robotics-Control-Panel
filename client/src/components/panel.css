@@ -10,7 +10,7 @@
     border-radius: 10px 10px 0px 0px;
     margin-bottom: 0;
     font-size:24px;
-
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
 }
 
 .waiting{
@@ -25,6 +25,7 @@
     height:50px;
     padding:13px;
     padding-top:22px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
 }
 
 .data{
@@ -36,6 +37,7 @@
     width: 150px;
     padding: 13px;
     margin-top: 0;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
 }
 
 body{
@@ -53,6 +55,7 @@ body{
     height:30px;
     padding:13px;
     border-radius: 10px 10px 0px 0px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
 }
 
 ul{
@@ -68,4 +71,12 @@ ul{
     padding:0.2px;
     padding-bottom:7px;
     padding-top:7px;
+    box-shadow: 0 4px 4px rgba(0,0,0,0.1);
+}
+
+.none{
+    background-color:none;
+    width:none;
+    height:none;
+    padding:0;
 }

@@ -6,6 +6,7 @@ const cmdVelRoute = require('./controllers/cmdVel')
 const { mongoUrl } = require('./utils/config')
 const http = require("http")
 const { Server } = require("socket.io")
+const path = require('path')
 
 const app = express()
 
@@ -31,6 +32,7 @@ io.on("connection", (socket) => {
   console.log("New WebSocket connection:", socket.id)
 })
 
+app.use(express.static(path.resolve(__dirname, 'client', 'dist')))
 app.use(cors({
   origin: "http://localhost:5173",
   credentials: true

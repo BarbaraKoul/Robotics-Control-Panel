@@ -29,7 +29,7 @@ const PathChart = () => {
 
     const points = history.map((p) => ({ x: p.x, y: p.y }))
 
-    const lastPoint = history.length > 0 ? [history[history.length - 1]] : []
+    const lastPoint = history.length > 0 ? history[history.length - 1] : null
 
     const arrowImg = useMemo(() => {
     if (!lastPoint) return null
@@ -40,7 +40,7 @@ const PathChart = () => {
     canvas.height = 40
 
     ctx.translate(20, 20)
-    ctx.rotate(lastPoint.theta)
+    ctx.rotate(lastPoint.theta) // Διορθωμένη πρόσβαση στο theta
     ctx.beginPath();
     ctx.moveTo(0, -12)
     ctx.lineTo(8, 10)
@@ -62,11 +62,12 @@ const PathChart = () => {
             showLine: true,
             borderColor: "blue",
             backgroundColor: "rgba(0, 123, 255, 0.4)",
-            pointRadius:0
+            pointRadius: 2,
+            fill: false,
         },
         {
             label: "Current Pose",
-            data: lastPoint.map((p) => ({ x: p.x, y: p.y })),
+            data: lastPoint ? [{ x: lastPoint.x, y: lastPoint.y }] : [],
             pointRadius: 6,
             pointStyle: arrowImg || "circle",
             backgroundColor: "red",

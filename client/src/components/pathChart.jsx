@@ -32,7 +32,7 @@ const PathChart = () => {
     const lastPoint = history.length > 0 ? [history[history.length - 1]] : []
 
     const arrowImg = useMemo(() => {
-    if (!last) return null
+    if (!lastPoint) return null
 
     const canvas = document.createElement("canvas")
     const ctx = canvas.getContext("2d")
@@ -40,7 +40,7 @@ const PathChart = () => {
     canvas.height = 40
 
     ctx.translate(20, 20)
-    ctx.rotate(last.theta)
+    ctx.rotate(lastPoint.theta)
     ctx.beginPath();
     ctx.moveTo(0, -12)
     ctx.lineTo(8, 10)
@@ -52,7 +52,7 @@ const PathChart = () => {
     const img = new Image()
     img.src = canvas.toDataURL()
     return img
-  }, [last?.theta])
+  }, [lastPoint?.theta])
 
     const pathChartData = {
         datasets: [
@@ -61,16 +61,18 @@ const PathChart = () => {
             data: points,
             showLine: true,
             borderColor: "blue",
-            backgroundColor: "rgba(0, 123, 255, 0.4)"
+            backgroundColor: "rgba(0, 123, 255, 0.4)",
+            pointRadius:0
         },
         {
             label: "Current Pose",
             data: lastPoint.map((p) => ({ x: p.x, y: p.y })),
             pointRadius: 6,
             pointStyle: arrowImg || "circle",
-            backgroundColor: "red"
+            backgroundColor: "red",
+            showLine: false
         },
-        ],
+        ].filter(Boolean)
     }
 
     const options = {
@@ -80,8 +82,8 @@ const PathChart = () => {
         legend: { position: "bottom" },
     },
         scales: {
-            x: { type: "linear", position: "bottom" },
-            y: { type: "linear" },
+            x: { type: "linear", position: "bottom", min: 0, max: 11 },
+            y: { type: "linear",  min: 0, max: 11 },
         },
     }
 

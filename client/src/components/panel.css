@@ -15,10 +15,16 @@
 
 .waiting{
     position: fixed;
-    right:24px;
-    top:100px;
+    right:13px;
+    top:68px;
     font-family: Roboto;
     font-size: 15px;
+    background-color: rgb(201,240,239);
+    width: 150px;
+    text-align:center;
+    height:50px;
+    padding:13px;
+    padding-top:22px;
 }
 
 .data{
@@ -38,7 +44,7 @@ body{
 
 .titleHistory{
     position:fixed;
-    left:13px;
+    left:123px;
     font-family:Roboto;
     background-color: rgb(175,228,227);
     width: 250px;
@@ -53,8 +59,8 @@ ul{
     font-family:Roboto;
     position:fixed;
     top:84px;
-    left:13px;
-    width:275px;
+    left:123px;
+    width:276px;
     background-color: rgb(201,240,239);
     text-align:center;
     margin:0;

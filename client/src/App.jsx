@@ -2,6 +2,7 @@ import PosePanel from "./components/posePanel"
 import VelocityChart from "./components/velocityChart"
 import XYChart from "./components/xyChart"
 import PathChart from "./components/pathChart"
+import JoystickControl from "./components/joystick"
 import "./graph.css"
 import menu from "./images/menu.png"
 
@@ -17,6 +18,7 @@ const App = () => {
           <XYChart/>
           <PathChart/>
         </div>
+        <JoystickControl/>
     </>
   )
 }

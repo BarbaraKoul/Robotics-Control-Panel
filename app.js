@@ -2,6 +2,7 @@ const express = require('express')
 const mongoose = require('mongoose')
 const cors = require('cors')
 const panelRouter = require('./controllers/panel')
+const cmdVelRoute = require('./controllers/cmdVel')
 const { mongoUrl } = require('./utils/config')
 const http = require("http")
 const { Server } = require("socket.io")
@@ -36,6 +37,7 @@ app.use(cors({
 }))
 app.use(express.json())
 app.use("/api/pose", panelRouter)
+app.use("/api/cmd_vel", cmdVelRoute)
 
 app.get('/api/test', (req, res) => {
   res.json({message: 'Server ok'})

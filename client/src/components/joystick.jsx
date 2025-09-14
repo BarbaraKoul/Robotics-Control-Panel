@@ -5,8 +5,8 @@ import "./joystick.css"
 function JoystickControl() {
   const handleMove = (event) => {
     const { x, y } = event
-    const linear_velocity = y / 50
-    const angular_velocity = -x / 50
+    const linear_velocity = y*3.0
+    const angular_velocity = (-x) *3.0
     fetch("http://localhost:3000/api/cmd_vel", {
       method: "POST",
       headers: { "Content-Type": "application/json" },

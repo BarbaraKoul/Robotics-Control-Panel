@@ -37,7 +37,7 @@ Clone the Repository. Seeing that the application uses **ROS Noetic** for the ro
 
   -For the Web Application:
   1. Install Node.Js dependencies (npm install)
-  2. start the web server (npm start)
+  2. start the web server (node index.js)
   3. Visit: [Robotics Control Panel](http://localhost:3000) (http://localhost:3000)
 
 You'll be able to see this: <img width="1919" height="873" alt="image" src="https://github.com/user-attachments/assets/fa52fcca-5105-4df1-ba71-cae1a533367b" />

@@ -1,6 +1,6 @@
 # Project - Robotics Control Panel
 
-<img width="1912" height="867" alt="Στιγμιότυπο οθόνης 2025-09-13 234134" src="https://github.com/user-attachments/assets/e8c9095e-8fbd-4adb-826c-f2cb50b71733" />
+![video1](https://github.com/user-attachments/assets/34cffe0a-8c8a-48ff-abf9-6ac35d61dc89)
 
 (in progress)
 
@@ -16,6 +16,8 @@ This Repository is made for **Robotics Control Panel**, a MERN Stack Web Applica
   The above can be also applied for simulations, like **turtlesim** of ROS <br/>
   <br/>
 *checked boxes mean that the features are currently added* **SO FAR FOR SIMULATIONS**
+
+<img width="1912" height="867" alt="Στιγμιότυπο οθόνης 2025-09-13 234134" src="https://github.com/user-attachments/assets/e8c9095e-8fbd-4adb-826c-f2cb50b71733" />
 
 ## Installation
 Clone the Repository. Seeing that the application uses **ROS Noetic** for the robotics simulations, make sure that you have **WSL** for Windows or a **Virtual Machine** for running Linux Ubuntu 20.04 and download it there. 
@@ -37,7 +39,7 @@ Clone the Repository. Seeing that the application uses **ROS Noetic** for the ro
 
   -For the Web Application:
   1. Install Node.Js dependencies (npm install)
-  2. start the web server (npm start)
+  2. start the web server (node index.js)
   3. Visit: [Robotics Control Panel](http://localhost:3000) (http://localhost:3000)
 
 You'll be able to see this: <img width="1919" height="873" alt="image" src="https://github.com/user-attachments/assets/fa52fcca-5105-4df1-ba71-cae1a533367b" />

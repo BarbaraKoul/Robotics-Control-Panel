@@ -1,0 +1,26 @@
+@import "tailwindcss";
+
+@layer utilities {
+  .glowBlue {
+    color: #23D0F2; 
+    text-shadow: 0 0 8px rgba(0,173,255,0.7), 0 0 12px rgba(0,173,255,0.5);
+  }
+  .glowGreen{
+    color: #4EE21E; 
+    text-shadow: 0 0 8px rgba(78,226,30,0.7), 0 0 12px rgba(78,226,30,0.5);
+  }
+};
+
+@theme{
+    --color-alert: #ee703a;
+    --color-base1: #afe4e3;
+    --color-panel: #05132A;
+    --color-back: #232E35;
+    --animate-warningAnimation: warningAnimation 3s ease-out infinite;
+
+    @keyframes warningAnimation {
+        0%{ scale:1.3;}
+        50% {scale: 1.7;}
+        100%{scale:1.3;}
+    }
+};

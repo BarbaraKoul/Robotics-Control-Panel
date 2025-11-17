@@ -1,7 +1,6 @@
 import { useRef, useEffect } from "react"
 import { Scatter } from "react-chartjs-2"
 import { usePoseStore } from "../store/usePoseStore"
-import "./diagrams.css"
 
 import {
   Chart as ChartJS,
@@ -57,7 +56,12 @@ const PathChart = () => {
         responsive: true,
         maintainAspectRatio: false,
         plugins: {
-            legend: { position: "bottom" },
+            legend:{
+                position: "top",
+                labels:{
+                    color:'#fcfcfc'
+            }
+            }
         },
         scales: {
             x: { 
@@ -66,7 +70,10 @@ const PathChart = () => {
                 min: 0, 
                 max: 11,
                 grid: {
-                    color: 'rgba(0, 0, 0, 0.1)'
+                    color: '#fcfcfc'
+                },
+                ticks:{
+                    color: '#fcfcfc'
                 }
             },
             y: { 
@@ -74,14 +81,18 @@ const PathChart = () => {
                 min: 0, 
                 max: 11,
                 grid: {
-                    color: 'rgba(0, 0, 0, 0.1)'
+                    color: '#fcfcfc'
+                },
+                ticks:{
+                    color: '#fcfcfc'
                 }
             },
         },
         animation: {
             duration: 0
         },
-        plugins: [{
+    }
+     const drawPlugin= {
             id: 'draw_arrow',
             afterDraw: (chart) => {
                 if (!lastPoint) return
@@ -108,8 +119,7 @@ const PathChart = () => {
                 
                 ctx.restore()
             }
-        }]
-    }
+        }
 
     useEffect(() => {
         if (chartRef.current) {
@@ -118,11 +128,12 @@ const PathChart = () => {
     }, [lastPoint])
 
     return(
-        <div className="chart">
+        <div className="flex scale-100 m-[50px] shadow-lg p-2.5 justify-center transition duration-300 hover:scale-[1.2]">
              <Scatter 
                  ref={chartRef}
                  data={pathChartData} 
                  options={options} 
+                 plugins={[drawPlugin]}
              />
         </div>
     )

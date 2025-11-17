@@ -1,6 +1,5 @@
 import { Line } from "react-chartjs-2"
 import { usePoseStore } from "../store/usePoseStore"
-import "./diagrams.css"
 
 import {
   Chart as ChartJS,
@@ -49,12 +48,26 @@ const VelocityChart = () =>{
     responsive: true,
     animation: false,
     scales: {
-      y: { beginAtZero: true },
-    }
+      y: { beginAtZero: true,
+        grid: {
+          color: '#fcfcfc'
+        },
+        ticks:{
+          color: '#fcfcfc'
+        }
+      },
+    },
+    plugins:{
+        legend:{
+          labels:{
+            color:'#fcfcfc'
+          }
+        }
+       }
   }
 
     return(
-        <div className="chart">
+        <div className="flex scale-100 m-[50px] shadow-lg p-2.5 justify-center transition duration-300 hover:scale-[1.2]">
             <Line options={lineChartOptions} data={lineChartData}/>
         </div>
     )

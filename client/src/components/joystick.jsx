@@ -1,6 +1,5 @@
 import React from 'react'
 import { Joystick } from 'react-joystick-component'
-import './joystick.css'
 
 function JoystickControl() {
   const handleMove = (event) => {
@@ -23,8 +22,8 @@ function JoystickControl() {
   }
 
   return (
-    <div className='joystick'>
-      <h2 className='title'>Joystick</h2>
+    <div className='fixed right-2.5 bottom-10'>
+      <h2 className='text-center text-xl font-[Roboto]'>Joystick</h2>
       <Joystick
         size={150}
         baseColor='rgba(210, 206, 206, 1)'
